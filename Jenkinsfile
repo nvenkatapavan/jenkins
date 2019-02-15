@@ -1,9 +1,10 @@
 @Library('jenkins')_
 
-stage('Demo') {
-
-  echo 'Hello World'
-
-  sayHello 'Dave'
-
+pipeline{
+  agent any
+  stages{
+    stage('Deploy') {
+        deploy()
+    }
+  }
 }
