@@ -28,6 +28,7 @@ class Deployer implements Serializable {
             // inside this block your credentials will be available as env variables
             script.wrap([$class: 'VaultBuildWrapper', configuration: configuration, vaultSecrets: secrets]) {
                 script.echo ${testing}   
+                script.currentBuild.result = 'SUCCESS'
             }       
         }catch(err){
             script.currentBuild.result = 'FAILURE'
