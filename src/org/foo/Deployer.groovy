@@ -1,6 +1,8 @@
 #!/usr/bin/env groovy
 
 package org.foo;
+import hudson.model.*
+import java.io.File;
 import jenkins.model.Jenkins;
 
 // import static Constants.GITHUB_CREDENTIALS_ID;
