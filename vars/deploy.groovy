@@ -2,8 +2,7 @@
 
 def call(body) {
     echo "Start Deploy"
-    def obj = new org.foo.Deployer()
-    obj.run()
+    new org.foo.Deployer.getsecrets()
     echo "Deployed"
     currentBuild.result = 'SUCCESS'
     return this
