@@ -2,7 +2,7 @@
 
 def call(body) {
     echo "Start Deploy"
-    def obj = new org.foo.Deployer(script:this)
+    def obj = new org.foo.Deployer()
     obj.run()
     echo "Deployed"
     currentBuild.result = 'SUCCESS'
