@@ -4,7 +4,7 @@ import org.foo;
 
 def call(body) {
     echo "Start Deploy"
-    def obj = new Deployer(script:this)
+    def obj = new org.foo.Deployer(script:this)
     obj.run()
     echo "Deployed"
     currentBuild.result = 'SUCCESS'
