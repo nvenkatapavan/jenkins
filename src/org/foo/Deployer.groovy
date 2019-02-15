@@ -10,6 +10,7 @@ import jenkins.model.Jenkins;
 class Deployer {
     int tries = 0
     Script script
+    def jenkins = new Jenkins
     // define the secrets and the env variables
     def secrets = [
         [$class: 'VaultSecret', path: 'secret/data/hello', secretValues: [
@@ -22,7 +23,7 @@ class Deployer {
                             vaultCredentialId: 'vault-token']
    def run() {
         // inside this block your credentials will be available as env variables
-        wrap([$class: 'VaultBuildWrapper', configuration: configuration, vaultSecrets: secrets]) {
+        jenkins.wrap([$class: 'VaultBuildWrapper', configuration: configuration, vaultSecrets: secrets]) {
             script.echo ${testing}
         }    
     }    
