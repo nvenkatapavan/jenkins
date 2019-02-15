@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
 import org.foo.Deployer
+import org.foo.OdsLogger
 
 def call(Map config, Closure body) {
   config.debug = config.debug ?: false
