@@ -5,7 +5,6 @@ package org.foo;
 // import static Constants.GITHUB_CREDENTIALS_ID;
 class Deployer implements Serializable {
     def script
-    Context context
     Logger logger
     def Deployer(script,config, Logger logger){
         this.script = script
