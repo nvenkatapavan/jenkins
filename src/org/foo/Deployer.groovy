@@ -5,11 +5,8 @@ package org.foo;
 // import static Constants.GITHUB_CREDENTIALS_ID;
 class Deployer implements Serializable {
     def script
-    Logger logger
-    def Deployer(script,config, Logger logger){
+    def Deployer(script){
         this.script = script
-        this.config = config
-        this.logger = logger
     }
     // define the secrets and the env variables
     def secrets = [
@@ -21,8 +18,7 @@ class Deployer implements Serializable {
     def configuration = [$class: 'VaultConfiguration',
                             vaultUrl: 'http://host.docker.internal:8200',
                             vaultCredentialId: 'vault-token']
-    def getsecrets(Closure stages){
-        logger.info "Getting secrets"
+    def getsecrets(){
         try {
             // inside this block your credentials will be available as env variables
             script.wrap([$class: 'VaultBuildWrapper', configuration: configuration, vaultSecrets: secrets]) {
