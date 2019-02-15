@@ -10,5 +10,3 @@ def call(Map config, Closure body) {
   bp.getsecrets(body)
   return this
 }
-
-return this
