@@ -11,11 +11,13 @@ def secrets = [
 def configuration = [$class: 'VaultConfiguration',
                         vaultUrl: 'http://host.docker.internal:8200',
                         vaultCredentialId: 'vault-token']
+                        
 def getsecrets() {
     // inside this block your credentials will be available as env variables
     wrap([$class: 'VaultBuildWrapper', configuration: configuration, vaultSecrets: secrets]) {
         script.echo ${testing}
-    }   
+    }
+}   
 
 def call(body) {
     echo "Start Deploy"
