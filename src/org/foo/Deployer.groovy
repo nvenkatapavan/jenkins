@@ -26,7 +26,6 @@ class Deployer implements Serializable {
                 script.currentBuild.result = 'SUCCESS'
             }       
         }catch(ex){
-            script.printenv
             println(ex.toString());
             println(ex.getMessage());               
             script.currentBuild.result = 'FAILURE'
