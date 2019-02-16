@@ -3,7 +3,11 @@
 import org.foo.Deployer
 
 def call() {
-  def bp = new Deployer(this)
-  bp.getsecrets()
-  return this
+    stage('Deploy') {
+       steps {
+            def bp = new Deployer(this)
+            bp.getsecrets()
+            return this           
+       }
+    }    
 }
