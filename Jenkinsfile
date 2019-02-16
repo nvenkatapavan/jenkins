@@ -3,6 +3,10 @@
 pipeline{
   agent any
   stages{
-    deploy()
+    stage('Deploy') {
+       steps {
+        deploy()
+       }
+    }
   }
 } 
