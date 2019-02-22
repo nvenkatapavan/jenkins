@@ -8,25 +8,21 @@ class Deployer implements Serializable {
     def Deployer(script){
         this.script = script
     }
-    // define the secrets and the env variables
+
     def secrets = [
-        [$class: 'VaultSecret', path: 'secret/data/hello', secretValues: [
-            [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'mysecret'],
+        [$class: 'VaultSecret', path: '', secretValues: [
+            [$class: 'VaultSecretValue', envVar: 'testing', vaultKey: 'password'],
     ]]]
-    // optional configuration, if you do not provide this the next higher configuration
-    // (e.g. folder or global) will be used
-    def configuration = [$class: 'VaultConfiguration',
-                            vaultUrl: 'http://host.docker.internal:8200',
-                            vaultCredentialId: 'vault-token']
+
     def getsecrets(){
         try {
             // inside this block your credentials will be available as env variables
-            script.wrap([$class: 'VaultBuildWrapper', configuration: configuration, vaultSecrets: secrets]) {
-                script.echo ${testing}   
+            script.wrap([$class: 'VaultBuildWrapper', vaultSecrets: secrets]) {
+                script.echo "My secret is : ${testing}"  
             }       
         }catch(ex){
-            println(ex.toString());
-            println(ex.getMessage());               
+            script.echo ex.toString();
+            script.echo ex.getMessage();               
         }
 
     }

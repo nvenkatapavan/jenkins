@@ -1,0 +1,18 @@
+@Library('jenkins')_
+
+pipeline {
+    agent any
+    stages {
+        stage("read vault key") {
+            steps {
+             script {
+                wrap([$class: 'VaultBuildWrapper', vaultSecrets: deploy.getsecrets("mysecret","password")]){
+
+                }
+                deploy.getsecrets1("mysecret","hello")
+                sh 'printenv'
+             }
+            }
+        }
+    }
+}
